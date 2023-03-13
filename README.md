@@ -66,3 +66,4 @@ But, first of all, we need to take the list of all the possible entities present
 ## Conclusion
 This software it grants us full control, which is why it is very powerful since not all the software permit this. 
 Also the possibility to have an higher level of privacy is a great point to focus on.
+In our case we build only a few components, but Home Assistant give us more feature (automations, scripting and also the manage of secrets).
