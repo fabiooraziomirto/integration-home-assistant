@@ -1,0 +1,10 @@
+{
+    "domain": "example_light",
+    "name": "Example Light",
+    "documentation": "",
+    "dependencies": [],
+    "codeowners": [],
+    "requirements": [],
+    "iot_class": "assumed_state",
+    "version": "0.1.0"
+  }
