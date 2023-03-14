@@ -35,23 +35,28 @@ In the "turn_off" function we just put the state of the light to "False" and set
 
 ### Button one
 The first button was designed to list all the active integrations on Home Assistant. We wrote the press function (after the initialization) in which we print in the console gateway the list of integration. This is done thanks to the "hass" object that permits us to access the data of the "Home Assistant Core" where we can see all the integrations. 
-Then we check that all the integrations are in the list of the components present inside Home Assistant.
+Then we check that all the integrations are in the list of the components present inside Home Assistant, in this way we can delete all the components that are not integrations.
 ```
         for domain in self.hass.data["integrations"]:
-            integration = self.hass.data["integrations"][domain]
             if domain in self.hass.config.components:
-                _LOGGER.info("%s\n", domain)
+                integration.append(domain)
 ```
 
 ### Button two
-In the second button, we wanted to turn off all the integrations that have the on/off property. But, first of all, we need to take the list of all the possible entities present inside Home Assistant and then we have to change the state of these entities thanks to the function "set"
+In the second button, we wanted to turn off all the integrations that have the on/off property. 
+But, first of all, we need to take the list of all the possible entities that have a service called "turn_off" present inside Home Assistant and then we have to call this service to turn_off all this entities.
+Since we need both the domain of the entities and the entity_id, we used the function "split_entity_id" that split the entity_id in two part: domain and object ID.
 ```
-        services = self.hass.states.entity_ids()
-        for key in services:
-            if self.hass.states.is_state(key, "on"):
-                self.hass.states.set(key, "off")
+        entities = self.hass.states.entity_ids()
+        for key in entities:
+            domain = split_entity_id(key)
+            if self.hass.services.has_service(domain=domain[0], service="turn_off"):
+                self.hass.services.call(
+                    domain=domain[0],
+                    service="turn_off",
+                    target={"entity_id": key},
+                )
 
-                _LOGGER.info("%s\n", self.hass.states.get(key))
 ```
 
 ## Conclusion
