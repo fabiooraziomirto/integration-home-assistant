@@ -6,6 +6,7 @@ from homeassistant.components.button import ButtonEntity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 
+
 DEFAULT_NAME = "Example Button"
 
 
@@ -25,13 +26,14 @@ def setup_platform(
 class ExampleButton(ButtonEntity):
     def __init__(self, name: str = DEFAULT_NAME) -> None:
         self._attr_name = name
-        _LOGGER.debug("Button 1 initialized\n")
 
     def press(self) -> None:
-        """Handle the button press."""
-        _LOGGER.info("Button 1 pressed\n")
+        integration = []
 
         for domain in self.hass.data["integrations"]:
-            integration = self.hass.data["integrations"][domain]
             if domain in self.hass.config.components:
-                _LOGGER.info("%s\n", domain)
+                integration.append(domain)
+
+        integration.sort()
+
+        _LOGGER.info("%s\n", integration)

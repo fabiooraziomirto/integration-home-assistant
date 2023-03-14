@@ -1,10 +1,12 @@
 from __future__ import annotations
 import logging
 
-from homeassistant.core import HomeAssistant
+# Import the device class from the component that you want to support
+from homeassistant.core import HomeAssistant, split_entity_id
 from homeassistant.components.button import ButtonEntity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
+from homeassistant.core import split_entity_id
 
 DEFAULT_NAME = "Button Off"
 
@@ -19,6 +21,7 @@ def setup_platform(
     discovery_info: DiscoveryInfoType | None = None,
 ) -> None:
     add_entities([ExampleButton()])
+
     return True
 
 
@@ -31,9 +34,12 @@ class ExampleButton(ButtonEntity):
         """Handle the button press."""
         _LOGGER.info("Button 1 pressed\n")
 
-        services = self.hass.states.entity_ids()
-        for key in services:
-            if self.hass.states.is_state(key, "on"):
-                self.hass.states.set(key, "off")
-
-                _LOGGER.info("%s\n", self.hass.states.get(key))
+        entities = self.hass.states.entity_ids()
+        for key in entities:
+            domain = split_entity_id(key)
+            if self.hass.services.has_service(domain=domain[0], service="turn_off"):
+                self.hass.services.call(
+                    domain=domain[0],
+                    service="turn_off",
+                    target={"entity_id": key},
+                )
