@@ -1,10 +1,10 @@
 {
-    "domain": "example_light",
-    "name": "Example Light",
+    "domain": "listing_button",
+    "name": "Listing Button",
     "documentation": "",
     "dependencies": [],
     "codeowners": [],
     "requirements": [],
-    "iot_class": "assumed_state",
+    "iot_class": "local_polling",
     "version": "0.1.0"
   }

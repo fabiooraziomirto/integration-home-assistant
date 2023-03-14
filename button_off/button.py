@@ -20,12 +20,12 @@ def setup_platform(
     add_entities: AddEntitiesCallback,
     discovery_info: DiscoveryInfoType | None = None,
 ) -> None:
-    add_entities([ExampleButton()])
+    add_entities([ButtonOff()])
 
     return True
 
 
-class ExampleButton(ButtonEntity):
+class ButtonOff(ButtonEntity):
     def __init__(self, name: str = DEFAULT_NAME) -> None:
         self._attr_name = name
         _LOGGER.debug("Button 1 initialized\n")

@@ -21,12 +21,14 @@ def setup_platform(
 
 
 class ExampleSensor(SensorEntity):
-
     _attr_name = "Example Temperature"
     _attr_native_unit_of_measurement = TEMP_CELSIUS
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_state_class = SensorStateClass.MEASUREMENT
 
     def update(self) -> None:
+        """Fetch new state data for the sensor.
 
+        This is the only method that should fetch new data for Home Assistant.
+        """
         self._attr_native_value = 23

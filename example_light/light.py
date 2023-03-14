@@ -56,7 +56,7 @@ class ExampleLight(LightEntity):
 
     @property
     def supported_features(self) -> int:
-        return SUPPORT_BRIGHTNESS
+        return SUPPORT_BRIGHTNESS  # or use 1 instead of the constant
 
     def turn_on(self, **kwargs):
         brightness = kwargs.get(ATTR_BRIGHTNESS_PCT, 255)
