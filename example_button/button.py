@@ -31,8 +31,7 @@ class ExampleButton(ButtonEntity):
         integration = []
 
         for domain in self.hass.data["integrations"]:
-            if domain in self.hass.config.components:
-                integration.append(domain)
+            integration.append(domain)
 
         integration.sort()
 
