@@ -2,7 +2,7 @@
 ## Introduction
 Nowadays smart home devices play a fundamental role in everyday life, from the simple light that we can turn on with our smartphone to home energy management (personal solar panel). Since every one of these devices is connected to our network it is important to focus, not only on the speed of the execution but also on the privacy and the security features that the system should have. Home Assistant was born with this goal. It is an open-source software used for home automation of smart home devices with a focus on local control and privacy. On this software, it is possible to use some integrations that define a specific device category of IoT devices in Home Assistant. There are many integrations provided by the community (since it is open source) but it is also possible to define some custom integrations. There are different ways to use a home assistant and in our case, we use the Home Assistant Core based on dev-container and Visual Studio Code. Our goal is to develop three different integration on the Home Assistant platform:
 ### Listing
-In this first integration, we built an integration that had to print in the gateway console the list of all active integration. First of all, we need to build a button entity that can perform this operation.
+In this first integration, we built a button that had to print in the gateway console the list of all active integration.
 ### Emulated Light
 In this second integration, the goal was to emulate the management of light, not only with the turn-on and the turn-off, but the user must have the possibility to control the brightness of the light.
 ### Turn off all
